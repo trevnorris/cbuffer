@@ -69,34 +69,4 @@ CBuffer.prototype = {
 	}
 };
 
-var tmp = new CBuffer( 5 );
-
-tmp.push( 1, 2, 3 );
-console.log( tmp.data );
-console.log( tmp.shift());
-console.log( tmp.data );
-tmp.push( 4, 5 );
-console.log( tmp.data );
-
-
-return;
-
-
-
-tmp.push( 'happy', 'sad', 'other', 'and', 'what', 'is', 'this', 'test' )
-
-console.log( tmp.pop() );
-console.log( tmp.first() );
-console.log( tmp.last() );
-console.log( '==============' );
-/* debug:start */
-console.log( tmp.data );
-/* debug:stop */
-tmp.push( 'ugh' );
-console.log( tmp.first() );
-/* debug:start */
-console.log( tmp.data );
-/* debug:stop */
-console.log( tmp.last() );
-tmp.clear();
-console.log( tmp.data );
+this.CBuffer = CBuffer;
