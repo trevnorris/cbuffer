@@ -58,12 +58,29 @@ CBuffer.prototype = {
 		this.size--;
 		return item;
 	},
+	// loop through each item in buffer
+	forEach : function( callback, context ) {
+		var i = 0;
+		// check if context was passed
+		if ( context ) {
+			for (; i < this.size; i++ ) {
+				callback.call( context, this.idx( i ), i, this );
+			}
+		} else {
+			for (; i < this.size; i++ ) {
+				callback( this.idx( i ), i, this );
+			}
+		}
+	},
+	// return first item in buffer
 	first : function() {
 		return this.data[ this.start ];
 	},
+	// return last item in buffer
 	last : function() {
 		return this.data[ this.end ];
 	},
+	// return specific index in buffer
 	idx : function( arg ) {
 		return this.data[( this.start + arg ) % this.length ];
 	}
