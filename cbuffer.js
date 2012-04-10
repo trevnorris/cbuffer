@@ -31,6 +31,18 @@ function CBuffer() {
 CBuffer.prototype = {
 	// properly set constructor
 	constructor : CBuffer,
+
+	/* mutator methods */
+	// pop last item
+	pop : function() {
+		var item;
+		if ( this.size === 0 ) return;
+		item = this.data[ this.end ];
+		delete this.data[( this.size + this.start - 1 ) % this.length ];
+		this.size--;
+		this.end = ( this.end - 1 + this.length ) % this.length;
+		return item;
+	},
 	// push item to the end
 	push : function() {
 		var i = 0;
@@ -51,16 +63,6 @@ CBuffer.prototype = {
 		// return number current number of items in CBuffer
 		return this.size;
 	},
-	// pop last item
-	pop : function() {
-		var item;
-		if ( this.size === 0 ) return;
-		item = this.data[ this.end ];
-		delete this.data[( this.size + this.start - 1 ) % this.length ];
-		this.size--;
-		this.end = ( this.end - 1 + this.length ) % this.length;
-		return item;
-	},
 	// remove and return first item
 	shift : function() {
 		var item;
@@ -76,6 +78,18 @@ CBuffer.prototype = {
 		this.size--;
 		return item;
 	},
+
+	/* accessor methods */
+	// return index of first matched element
+	indexOf : function( arg, idx ) {
+		if ( !idx ) idx = 0;
+		for ( ; idx < this.size; idx++ ) {
+			if ( this.idx( idx ) === arg ) return idx;
+		}
+		return -1;
+	},
+
+	/* iteration methods */
 	// loop through each item in buffer
 	forEach : function( callback, context ) {
 		var i = 0;
@@ -90,14 +104,8 @@ CBuffer.prototype = {
 			}
 		}
 	},
-	// return index of first matched element
-	indexOf : function( arg, idx ) {
-		if ( !idx ) idx = 0;
-		for ( ; idx < this.size; idx++ ) {
-			if ( this.idx( idx ) === arg ) return idx;
-		}
-		return -1;
-	},
+
+	/* utility methods */
 	// return first item in buffer
 	first : function() {
 		return this.data[ this.start ];
