@@ -45,26 +45,25 @@ CBuffer.prototype = {
 		// recalculate end
 		this.end = ( this.end + i ) % this.length;
 		// recalculate start
-		this.start = this.end - this.size + 1;
-		if ( this.start < 0 ) this.start += this.length;
+		this.start = ( this.length + this.end - this.size + 1 ) % this.length;
 		// return number current number of items in CBuffer
 		return this.size;
 	},
 	// pop last item
 	pop : function() {
+		var item;
 		if ( this.size === 0 ) return;
-		var item = this.last();
+		item = this.data[ this.end ];
 		delete this.data[( this.size + this.start - 1 ) % this.length ];
 		this.size--;
-		this.end--;
-		if ( this.end < 0 ) this.end += this.length;
+		this.end = ( this.end - 1 + this.length ) % this.length;
 		return item;
 	},
-	// shift first item
+	// remove and return first item
 	shift : function() {
 		var item;
 		// check if there are any items in CBuff
-		if ( this.size === 0 ) return undefined;
+		if ( this.size === 0 ) return;
 		// store first item for return
 		item = this.data[ this.start ];
 		// delete first item from memory
