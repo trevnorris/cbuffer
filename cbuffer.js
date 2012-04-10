@@ -45,6 +45,16 @@ CBuffer.prototype = {
 		// return number current number of items in CBuffer
 		return this.size;
 	},
+	// pop last item
+	pop : function() {
+		if ( this.size === 0 ) return;
+		var item = this.last();
+		delete this.data[( this.size + this.start - 1 ) % this.length ];
+		this.size--;
+		this.end--;
+		if ( this.end < 0 ) this.end += this.length;
+		return item;
+	},
 	// shift first item
 	shift : function() {
 		var item;
