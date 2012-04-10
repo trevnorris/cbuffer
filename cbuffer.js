@@ -29,6 +29,8 @@ function CBuffer() {
 }
 
 CBuffer.prototype = {
+	// properly set constructor
+	constructor : CBuffer,
 	// push item to the end
 	push : function() {
 		var i = 0;
