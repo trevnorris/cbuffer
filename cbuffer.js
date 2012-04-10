@@ -1,3 +1,5 @@
+(function( global ) {
+
 function CBuffer() {
 	// handle cases where "new" keyword wasn't used
 	if (!( this instanceof CBuffer )) {
@@ -72,6 +74,14 @@ CBuffer.prototype = {
 			}
 		}
 	},
+	// return index of first matched element
+	indexOf : function( arg, idx ) {
+		if ( !idx ) idx = 0;
+		for ( ; idx < this.size; idx++ ) {
+			if ( this.idx( idx ) === arg ) return idx;
+		}
+		return -1;
+	},
 	// return first item in buffer
 	first : function() {
 		return this.data[ this.start ];
@@ -86,4 +96,6 @@ CBuffer.prototype = {
 	}
 };
 
-this.CBuffer = CBuffer;
+global.CBuffer = CBuffer;
+
+}( this ));
