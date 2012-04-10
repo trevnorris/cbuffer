@@ -107,6 +107,10 @@ CBuffer.prototype = {
 	// return specific index in buffer
 	idx : function( arg ) {
 		return this.data[( this.start + arg ) % this.length ];
+	},
+	// set value at specified index
+	set : function( idx, arg ) {
+		return this.data[( this.start + idx ) % this.length ] = arg;
 	}
 };
 
