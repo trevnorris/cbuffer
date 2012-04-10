@@ -1,6 +1,7 @@
 (function( global ) {
 
 function CBuffer() {
+	var i = 0;
 	// handle cases where "new" keyword wasn't used
 	if (!( this instanceof CBuffer )) {
 		if ( arguments.length > 1 || typeof arguments[0] !== 'number' ) {
@@ -18,6 +19,10 @@ function CBuffer() {
 		this.push.apply( this, arguments );
 	} else {
 		this.data = new Array( arguments[0] );
+		// force preallocation of memory to each array slot, for quicker operation on buffer
+		for ( ; i < arguments[0]; i++ ) {
+			this.data[i] = 0;
+		}
 		this.end = ( this.length = arguments[0] ) - 1;
 	}
 	return this;
