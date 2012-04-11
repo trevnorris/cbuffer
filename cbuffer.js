@@ -95,7 +95,7 @@ CBuffer.prototype = {
 	indexOf : function( arg, idx ) {
 		if ( !idx ) idx = 0;
 		for ( ; idx < this.size; idx++ ) {
-			if ( this.idx( idx ) === arg ) return idx;
+			if ( this.get( idx ) === arg ) return idx;
 		}
 		return -1;
 	},
@@ -107,11 +107,11 @@ CBuffer.prototype = {
 		// check if context was passed
 		if ( context ) {
 			for (; i < this.size; i++ ) {
-				callback.call( context, this.idx( i ), i, this );
+				callback.call( context, this.get( i ), i, this );
 			}
 		} else {
 			for (; i < this.size; i++ ) {
-				callback( this.idx( i ), i, this );
+				callback( this.get( i ), i, this );
 			}
 		}
 	},
@@ -126,7 +126,7 @@ CBuffer.prototype = {
 		return this.data[ this.end ];
 	},
 	// return specific index in buffer
-	idx : function( arg ) {
+	get : function( arg ) {
 		return this.data[( this.start + arg ) % this.length ];
 	},
 	// set value at specified index
