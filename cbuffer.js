@@ -63,6 +63,17 @@ CBuffer.prototype = {
 		// return number current number of items in CBuffer
 		return this.size;
 	},
+	// reverse order of the buffer
+	reverse : function() {
+		var i = 0,
+			tmp;
+		for ( ; i < ~~( this.size / 2 ); i++ ) {
+			tmp = this.idx( i );
+			this.set( i, this.idx( this.size - i - 1 ));
+			this.set( this.size - i - 1, tmp );
+		}
+		return this;
+	},
 	// remove and return first item
 	shift : function() {
 		var item;
