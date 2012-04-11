@@ -1,15 +1,15 @@
 var vows = require( 'vows' ),
 	assert = require('assert' )
-	suite = vows.describe( 'DBuffer' );
+	suite = vows.describe( 'CBuffer' );
 
 require( '../env.js' );
 
 suite.addBatch({
 	'' : {
 		'topic' : function() {
-			return DBuffer;
+			return CBuffer;
 		},
-		'' : function( DBuffer ) {
+		'' : function( CBuffer ) {
 		}
 	}
 });
