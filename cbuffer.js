@@ -68,9 +68,9 @@ CBuffer.prototype = {
 		var i = 0,
 			tmp;
 		for ( ; i < ~~( this.size / 2 ); i++ ) {
-			tmp = this.idx( i );
-			this.set( i, this.idx( this.size - i - 1 ));
-			this.set( this.size - i - 1, tmp );
+			tmp = this.data[( this.start + i ) % this.length ];
+			this.data[( this.start + i ) % this.length ] = this.data[( this.start + ( this.size - i - 1 )) % this.length ];
+			this.data[( this.start + ( this.size - i - 1 )) % this.length ] = tmp;
 		}
 		return this;
 	},
