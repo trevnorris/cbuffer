@@ -28,6 +28,7 @@ currently implemented API.
 #### Accessor Methods
 
 * indexOf()
+* lastIndexOf()
 
 #### Iteration Methods
 

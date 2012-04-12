@@ -125,6 +125,14 @@ CBuffer.prototype = {
 		}
 		return -1;
 	},
+	// return last index of the first match
+	lastIndexOf : function( arg, idx ) {
+		if ( !idx ) idx = this.size - 1;
+		for ( ; idx >= 0; idx-- ) {
+			if ( this.data[( this.start + idx ) % this.length ] === arg ) return idx;
+		}
+		return -1;
+	},
 
 	/* iteration methods */
 	// loop through each item in buffer
