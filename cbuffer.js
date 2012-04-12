@@ -91,18 +91,10 @@ CBuffer.prototype = {
 	},
 	// sort items
 	sort : function( fn ) {
-		var i = this.size - 1,
-			j, tmp;
-		for ( ; i > 0; i-- ) {
-			for ( j = i; j > 0; j-- ) {
-				tmp = fn( this.data[( this.start + j ) % this.length ], this.data[( this.start + j - 1 ) % this.length ]);
-				if ( tmp < 0 ) {
-					tmp = this.data[( this.start + j ) % this.length ];
-					this.data[( this.start + j ) % this.length ] = this.data[( this.start + j - 1 ) % this.length ];
-					this.data[( this.start + j - 1 ) % this.length ] = tmp;
-				}
-			}
-		}
+		if ( fn ) this.data.sort( fn );
+		else this.data.sort();
+		this.start = 0;
+		this.end = this.size - 1;
 		return this;
 	},
 	// add item to beginning of buffer

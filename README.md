@@ -22,7 +22,7 @@ currently implemented API.
 * push()
 * reverse()
 * shift()
-* sort() *Note: no default lexicographical sort, only simple bubble sort*
+* sort()
 * unshift()
 
 #### Accessor Methods
