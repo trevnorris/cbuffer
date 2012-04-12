@@ -105,6 +105,24 @@ CBuffer.prototype = {
 		}
 		return this;
 	},
+	// add item to beginning of buffer
+	unshift : function() {
+		var i = 0;
+		for ( ; i < arguments.length; i++ ) {
+			this.data[( this.length + this.start - ( i % this.length ) - 1 ) % this.length ] = arguments[i];
+		}
+		if ( this.length - this.size - i < 0 ) {
+			this.end += this.length - this.size - i;
+			if ( this.end < 0 ) this.end = this.length + ( this.end % this.length );
+		}
+		if ( this.size < this.length ) {
+			if ( this.size + i > this.length ) this.size = this.length;
+			else this.size += i;
+		}
+		this.start -= arguments.length;
+		if ( this.start < 0 ) this.start = this.length + ( this.start % this.length );
+		return this.size;
+	},
 
 	/* accessor methods */
 	// return index of first matched element

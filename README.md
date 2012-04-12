@@ -23,6 +23,7 @@ currently implemented API.
 * reverse()
 * shift()
 * sort() *Note: no default lexicographical sort, only simple bubble sort*
+* unshift()
 
 #### Accessor Methods
 
