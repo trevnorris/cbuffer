@@ -165,6 +165,22 @@ CBuffer.prototype = {
 			}
 		}
 	},
+	// check items agains test until one returns true
+	some : function( callback, context ) {
+		var i = 0;
+		if ( context ) {
+			for ( ; i < this.size; i++ ) {
+				if ( callback.call( context, this.data[( this.start + i ) % this.length ], i, this ))
+					return true;
+			}
+		} else {
+			for ( ; i < this.size; i++ ) {
+				if ( callback( this.data[( this.start + i ) % this.length ], i, this ))
+					return true;
+			}
+		}
+		return false;
+	},
 
 	/* utility methods */
 	// return first item in buffer

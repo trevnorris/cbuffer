@@ -34,6 +34,7 @@ currently implemented API.
 
 * every()
 * forEach()
+* some()
 
 #### Utility Methods
 
