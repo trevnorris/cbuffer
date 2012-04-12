@@ -32,6 +32,7 @@ currently implemented API.
 
 #### Iteration Methods
 
+* every()
 * forEach()
 
 #### Utility Methods
