@@ -89,6 +89,22 @@ CBuffer.prototype = {
 		this.size--;
 		return item;
 	},
+	// sort items
+	sort : function( fn ) {
+		var i = this.size - 1,
+			j, tmp;
+		for ( ; i > 0; i-- ) {
+			for ( j = i; j > 0; j-- ) {
+				tmp = fn( this.data[( this.start + j ) % this.length ], this.data[( this.start + j - 1 ) % this.length ]);
+				if ( tmp < 0 ) {
+					tmp = this.data[( this.start + j ) % this.length ];
+					this.data[( this.start + j ) % this.length ] = this.data[( this.start + j - 1 ) % this.length ];
+					this.data[( this.start + j - 1 ) % this.length ] = tmp;
+				}
+			}
+		}
+		return this;
+	},
 
 	/* accessor methods */
 	// return index of first matched element
