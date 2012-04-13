@@ -38,6 +38,7 @@ currently implemented API.
 
 #### Utility Methods
 
+* empty()
 * first()
 * last()
 * get()

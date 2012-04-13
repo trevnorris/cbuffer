@@ -199,6 +199,14 @@ CBuffer.prototype = {
 	},
 
 	/* utility methods */
+	// empty out all values in cbuffer
+	empty : function() {
+		var i = 0;
+		while( delete this.data[i], ++i < this.size );
+		this.size = this.start = 0;
+		this.end = this.length - 1;
+		return this;
+	},
 	// return first item in buffer
 	first : function() {
 		return this.data[ this.start ];
