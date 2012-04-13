@@ -12,6 +12,8 @@ function CBuffer() {
 	}
 	// this is the same in either scenario
 	this.size = this.start = 0;
+	// set to callback fn if data is about to be overwritten
+	this.overflow = false;
 	// build CBuffer based on passed arguments
 	if ( arguments.length > 1 || typeof arguments[0] !== 'number' ) {
 		this.data = new Array( arguments.length );
@@ -46,9 +48,16 @@ CBuffer.prototype = {
 	// push item to the end
 	push : function() {
 		var i = 0;
+		// check if overflow is set, and if data is about to be overwritten
+		if ( this.overflow && this.size + arguments.length > this.length ) {
+			// call overflow function and send data that's about to be overwritten
+			for ( ; i < this.size + arguments.length - this.length; i++ ) {
+				this.overflow( this.data[( this.end + i + 1 ) % this.length ], this );
+			}
+		}
 		// push items to the end, wrapping and erasing existing items
 		// using arguments variable directly to reduce gc footprint
-		for ( ; i < arguments.length; i++ ) {
+		for ( i = 0; i < arguments.length; i++ ) {
 			this.data[( this.end + i + 1 ) % this.length ] = arguments[i];
 		}
 		// recalculate size
@@ -100,7 +109,14 @@ CBuffer.prototype = {
 	// add item to beginning of buffer
 	unshift : function() {
 		var i = 0;
-		for ( ; i < arguments.length; i++ ) {
+		// check if overflow is set, and if data is about to be overwritten
+		if ( this.overflow && this.size + arguments.length > this.length ) {
+			// call overflow function and send data that's about to be overwritten
+			for ( ; i < this.size + arguments.length - this.length; i++ ) {
+				this.overflow( this.data[ this.end - ( i % this.length )], this );
+			}
+		}
+		for ( i = 0; i < arguments.length; i++ ) {
 			this.data[( this.length + this.start - ( i % this.length ) - 1 ) % this.length ] = arguments[i];
 		}
 		if ( this.length - this.size - i < 0 ) {
