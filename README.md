@@ -42,4 +42,5 @@ currently implemented API.
 * last()
 * get()
 * set()
+* toArray() - Return clean ordered array of buffer
 * overflow - Set to function and will be called when data is about to be overwritten

@@ -214,6 +214,15 @@ CBuffer.prototype = {
 	// set value at specified index
 	set : function( idx, arg ) {
 		return this.data[( this.start + idx ) % this.length ] = arg;
+	},
+	// return clean array of values
+	toArray : function() {
+		var narr = new Array( this.size ),
+			i = 0;
+		for ( ; i < this.size; i++ ) {
+			narr[i] = this.data[( this.start + i ) % this.length ];
+		}
+		return narr;
 	}
 };
 
