@@ -239,6 +239,7 @@ CBuffer.prototype = {
 	}
 };
 
-global.CBuffer = CBuffer;
+if ( module && module.exports ) module.exports = CBuffer;
+else global.CBuffer = CBuffer;
 
 }( this ));

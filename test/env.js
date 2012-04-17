@@ -1,1 +1,1 @@
-CBuffer = require( '../cbuffer.js' ).CBuffer;
+CBuffer = require( '../cbuffer.js' );
