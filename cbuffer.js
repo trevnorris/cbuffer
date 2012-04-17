@@ -200,9 +200,14 @@ CBuffer.prototype = {
 
 	/* utility methods */
 	// empty out all values in cbuffer
-	empty : function() {
+	// default is to delete values, but if pass arg then will set all values to arg
+	empty : function( arg ) {
 		var i = 0;
-		while( delete this.data[i], ++i < this.size );
+		if ( arg == null ) {
+			while( delete this.data[i], ++i < this.size );
+		} else {
+			while( this.data[i] = arg, ++i < this.size );
+		}
 		this.size = this.start = 0;
 		this.end = this.length - 1;
 		return this;
