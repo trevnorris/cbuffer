@@ -3,7 +3,7 @@ var vows = require( 'vows' ),
 	suite = vows.describe( 'CBuffer' ),
 	und = undefined;
 
-require( '../env.js' );
+require( '../env' );
 
 suite.addBatch({
 	'CBuffer' : {

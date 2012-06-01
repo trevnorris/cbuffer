@@ -2,7 +2,7 @@ var vows = require( 'vows' ),
 	assert = require('assert' )
 	suite = vows.describe( 'CBuffer' );
 
-require( '../env.js' );
+require( '../env' );
 
 suite.addBatch({
 	'indexOf' : {
