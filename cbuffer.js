@@ -239,7 +239,7 @@ CBuffer.prototype = {
 	}
 };
 
-if ( module && module.exports ) module.exports = CBuffer;
+if ( typeof module === 'object' && module.exports ) module.exports = CBuffer;
 else global.CBuffer = CBuffer;
 
 }( this ));
