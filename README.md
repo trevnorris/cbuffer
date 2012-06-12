@@ -21,6 +21,8 @@ currently implemented API.
 * pop()
 * push()
 * reverse()
+* rotateLeft(x)
+* rotateRight(x)
 * shift()
 * sort()
 * unshift()

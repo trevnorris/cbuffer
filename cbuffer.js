@@ -83,6 +83,22 @@ CBuffer.prototype = {
 		}
 		return this;
 	},
+	// rotate buffer to the left by cntr, or by 1
+	rotateLeft : function( cntr ) {
+		if ( !cntr ) cntr = 1;
+		while ( --cntr >= 0 ) {
+			this.push( this.shift());
+		}
+		return this;
+	},
+	// rotate buffer to the right by cntr, or by 1
+	rotateRight : function( cntr ) {
+		if ( !cntr ) cntr = 1;
+		while ( --cntr >= 0 ) {
+			this.unshift( this.pop());
+		}
+		return this;
+	},
 	// remove and return first item
 	shift : function() {
 		var item;
