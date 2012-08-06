@@ -215,16 +215,25 @@ CBuffer.prototype = {
 	},
 
 	/* utility methods */
-	// empty out all values in cbuffer
-	// default is to delete values, but if pass arg then will set all values to arg
-	empty : function(arg) {
+	// reset pointers to buffer with zero items
+	// note: this will not remove values in cbuffer, so if for security values
+	//       need to be overwritten, run `.fill(null).empty()`
+	empty : function() {
 		var i = 0;
-		if (arg == null) {
-			while(delete this.data[i], ++i < this.size);
+		this.size = this.start = 0;
+		this.end = this.length - 1;
+		return this;
+	},
+	// fill all used places with passed value
+	fill : function(arg) {
+		var i = 0;
+		if (typeof arg === 'function') {
+			while(this.data[i] = arg(), ++i < this.size);
 		} else {
 			while(this.data[i] = arg, ++i < this.size);
 		}
-		this.size = this.start = 0;
+		// reposition start/end
+		this.start = 0;
 		this.end = this.length - 1;
 		return this;
 	},
