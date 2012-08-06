@@ -26,5 +26,5 @@ function runTest(itter, name, fn) {
 		iniT = -Date.now();
 	while (fn(), --i >= 0);
 	iniT += Date.now();
-	console.log(name, ':', (itter / iniT * 1000).toFixed().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,'), 'op/s');
+	console.log(name, ':', (itter / iniT * 1000).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,'), 'op/s');
 };
