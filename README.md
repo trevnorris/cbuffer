@@ -3,6 +3,9 @@
 The end goal of this project is to implement the entire JavaScript `Array.prototype`, and some
 additional utility methods, as a circular buffer.
 
+Note: This is called a circular buffer because of what this library accomplishes, but is implemented
+as an Array. This may be confusing for Node users, which may want to use a true Buffer.
+
 As JavaScript is used for more and more computationally intensive tasks, it's important to reduce
 execution and garbage collection time. By using a circular buffer instead of a native array less
 extraneous data bits are generated that will need to be cleaned up later. So use of this library is

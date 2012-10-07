@@ -18,7 +18,7 @@ suite.addBatch({
 			assert.isTrue( CBuffer( 1 ).constructor === CBuffer );
 		},
 		'data' : function( CBuffer ) {
-			assert.deepEqual( CBuffer( 3 ).data, [ und, und, und ]);
+			assert.deepEqual( CBuffer( 3 ).data, [,,]);
 			assert.deepEqual( CBuffer( 1, 2, 3 ).data, [ 1, 2, 3 ]);
 		},
 		'end' : function( CBuffer ) {
