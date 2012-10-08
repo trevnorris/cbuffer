@@ -220,13 +220,13 @@ CBuffer.prototype = {
 		this.end = this.length - 1;
 		return this;
 	},
-	// fill all used places with passed value
+	// fill all places with passed value or function
 	fill : function(arg) {
 		var i = 0;
 		if (typeof arg === 'function') {
-			while(this.data[i] = arg(), ++i < this.size);
+			while(this.data[i] = arg(), ++i < this.length);
 		} else {
-			while(this.data[i] = arg, ++i < this.size);
+			while(this.data[i] = arg, ++i < this.length);
 		}
 		// reposition start/end
 		this.start = 0;
