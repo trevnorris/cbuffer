@@ -4,17 +4,20 @@ function CBuffer() {
 	var i = 0;
 	// handle cases where "new" keyword wasn't used
 	if (!(this instanceof CBuffer)) {
+		// multiple conditions need to be checked to properly emulate Array
 		if (arguments.length > 1 || typeof arguments[0] !== 'number') {
 			return CBuffer.apply(new CBuffer(), arguments);
 		} else {
 			return new CBuffer(arguments[0]);
 		}
 	}
+	// if no arguments, then nothing needs to be set
+	if (arguments.length === 0) return this;
 	// this is the same in either scenario
 	this.size = this.start = 0;
 	// set to callback fn if data is about to be overwritten
 	this.overflow = false;
-	// build CBuffer based on passed arguments
+	// emulate Array based on passed arguments
 	if (arguments.length > 1 || typeof arguments[0] !== 'number') {
 		this.data = new Array(arguments.length);
 		this.end = (this.length = arguments.length) - 1;
@@ -23,6 +26,7 @@ function CBuffer() {
 		this.data = new Array(arguments[0]);
 		this.end = (this.length = arguments[0]) - 1;
 	}
+	// need to `return this` so `return CBuffer.apply` works
 	return this;
 }
 
