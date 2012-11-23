@@ -40,8 +40,8 @@ CBuffer.prototype = {
 		var item;
 		if (this.size === 0) return;
 		item = this.data[this.end];
-		delete this.data[(this.size + this.start - 1) % this.length];
-		this.size--;
+		// no need to delete item, since resize will make it inaccessible to
+		// CBuffer methods
 		this.end = (this.end - 1 + this.length) % this.length;
 		return item;
 	},
@@ -106,9 +106,7 @@ CBuffer.prototype = {
 		if (this.size === 0) return;
 		// store first item for return
 		item = this.data[this.start];
-		// delete first item from memory
-		delete this.data[this.start];
-		// recalculate start of CBuff
+		// recalculate start of CBuffer
 		this.start = (this.start + 1) % this.length;
 		// decrement size
 		this.size--;
