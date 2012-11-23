@@ -1,43 +1,43 @@
-var vows = require( 'vows' ),
-	assert = require('assert' )
-	suite = vows.describe( 'CBuffer' ),
-	und = undefined;
+var vows = require('vows'),
+    assert = require('assert')
+    suite = vows.describe('CBuffer'),
+    und = undefined;
 
-require( '../env' );
+require('../env');
 
 suite.addBatch({
 	'CBuffer' : {
-		'topic' : function() {
+		'topic' : function () {
 			return CBuffer;
 		},
-		'construction' : function( CBuffer ) {
-			assert.isTrue(( new CBuffer( 1 )) instanceof CBuffer );
-			assert.isTrue( CBuffer( 1 ) instanceof CBuffer );
-			assert.isTrue(( new CBuffer( 1, 2, 3 )) instanceof CBuffer );
-			assert.isTrue( CBuffer( 1, 2, 3 ) instanceof CBuffer );
-			assert.isTrue( CBuffer( 1 ).constructor === CBuffer );
+		'construction' : function (CBuffer) {
+			assert.isTrue((new CBuffer(1)) instanceof CBuffer);
+			assert.isTrue(CBuffer(1) instanceof CBuffer);
+			assert.isTrue((new CBuffer(1, 2, 3)) instanceof CBuffer);
+			assert.isTrue(CBuffer(1, 2, 3) instanceof CBuffer);
+			assert.isTrue(CBuffer(1).constructor === CBuffer);
 		},
-		'data' : function( CBuffer ) {
-			assert.deepEqual( CBuffer( 3 ).data, [,,]);
-			assert.deepEqual( CBuffer( 1, 2, 3 ).data, [ 1, 2, 3 ]);
+		'data' : function (CBuffer) {
+			assert.deepEqual(CBuffer(3).data, [,,]);
+			assert.deepEqual(CBuffer(1, 2, 3).data, [1, 2, 3]);
 		},
-		'end' : function( CBuffer ) {
-			assert.equal( CBuffer( 3 ).end, 2 );
-			assert.equal( CBuffer( 1, 2, 3 ).end, 2 );
+		'end' : function (CBuffer) {
+			assert.equal(CBuffer(3).end, 2);
+			assert.equal(CBuffer(1, 2, 3).end, 2);
 		},
-		'length' : function( CBuffer ) {
-			assert.equal( CBuffer( 3 ).length, 3 );
-			assert.equal( CBuffer( 1, 2, 3 ).length, 3 );
+		'length' : function (CBuffer) {
+			assert.equal(CBuffer(3).length, 3);
+			assert.equal(CBuffer(1, 2, 3).length, 3);
 		},
-		'size' : function( CBuffer ) {
-			assert.equal( CBuffer( 3 ).size, 0 );
-			assert.equal( CBuffer( 1, 2, 3 ).size, 3 );
+		'size' : function (CBuffer) {
+			assert.equal(CBuffer(3).size, 0);
+			assert.equal(CBuffer(1, 2, 3).size, 3);
 		},
-		'start' : function( CBuffer ) {
-			assert.equal( CBuffer( 3 ).start, 0 );
-			assert.equal( CBuffer( 1, 2, 3 ).start, 0 );
+		'start' : function (CBuffer) {
+			assert.equal(CBuffer(3).start, 0);
+			assert.equal(CBuffer(1, 2, 3).start, 0);
 		}
 	}
 });
 
-suite.export( module );
+suite.export(module);

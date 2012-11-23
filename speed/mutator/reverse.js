@@ -10,10 +10,10 @@ for (i = 1e5; i > 0; i--)
 for (i = 1e5; i > 0; i--)
 	arr.push(i);
 
-test('reverse - CBuffer', function() {
+test('reverse - CBuffer', function () {
 	cb.reverse();
 });
 
-test('reverse - Array  ', function() {
+test('reverse - Array  ', function () {
 	arr.reverse();
 });

@@ -3,11 +3,11 @@ module.exports = function test(name, fn) {
 	// first generate reliable number of itterations for test
 	(function genItter() {
 		var i = itter,
-			iniT = -Date.now();
+		    iniT = -Date.now();
 		while(fn(), --i >= 0);
 		iniT += Date.now();
 		if (iniT > 100)
-			setTimeout(function() {
+			setTimeout(function () {
 				runTest(itter, name, fn);
 			}, 100);
 		else {
@@ -23,7 +23,7 @@ module.exports = function test(name, fn) {
 
 function runTest(itter, name, fn) {
 	var i = itter,
-		iniT = -Date.now();
+	    iniT = -Date.now();
 	while (fn(), --i >= 0);
 	iniT += Date.now();
 	console.log(name, ':', (itter / iniT * 1000).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,'), 'op/s');

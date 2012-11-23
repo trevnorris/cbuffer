@@ -1,7 +1,6 @@
-(function(global) {
+(function (global) {
 
 function CBuffer() {
-	var i = 0;
 	// handle cases where "new" keyword wasn't used
 	if (!(this instanceof CBuffer)) {
 		// multiple conditions need to be checked to properly emulate Array
@@ -36,7 +35,7 @@ CBuffer.prototype = {
 
 	/* mutator methods */
 	// pop last item
-	pop : function() {
+	pop : function () {
 		var item;
 		if (this.size === 0) return;
 		item = this.data[this.end];
@@ -46,7 +45,7 @@ CBuffer.prototype = {
 		return item;
 	},
 	// push item to the end
-	push : function() {
+	push : function () {
 		var i = 0;
 		// check if overflow is set, and if data is about to be overwritten
 		if (this.overflow && this.size + arguments.length > this.length) {
@@ -73,7 +72,7 @@ CBuffer.prototype = {
 		return this.size;
 	},
 	// reverse order of the buffer
-	reverse : function() {
+	reverse : function () {
 		var i = 0,
 			tmp;
 		for (; i < ~~(this.size / 2); i++) {
@@ -84,7 +83,7 @@ CBuffer.prototype = {
 		return this;
 	},
 	// rotate buffer to the left by cntr, or by 1
-	rotateLeft : function(cntr) {
+	rotateLeft : function (cntr) {
 		if (!cntr) cntr = 1;
 		while (--cntr >= 0) {
 			this.push(this.shift());
@@ -92,7 +91,7 @@ CBuffer.prototype = {
 		return this;
 	},
 	// rotate buffer to the right by cntr, or by 1
-	rotateRight : function(cntr) {
+	rotateRight : function (cntr) {
 		if (!cntr) cntr = 1;
 		while (--cntr >= 0) {
 			this.unshift(this.pop());
@@ -100,7 +99,7 @@ CBuffer.prototype = {
 		return this;
 	},
 	// remove and return first item
-	shift : function() {
+	shift : function () {
 		var item;
 		// check if there are any items in CBuff
 		if (this.size === 0) return;
@@ -113,7 +112,7 @@ CBuffer.prototype = {
 		return item;
 	},
 	// sort items
-	sort : function(fn) {
+	sort : function (fn) {
 		if (fn) this.data.sort(fn);
 		else this.data.sort();
 		this.start = 0;
@@ -121,7 +120,7 @@ CBuffer.prototype = {
 		return this;
 	},
 	// add item to beginning of buffer
-	unshift : function() {
+	unshift : function () {
 		var i = 0;
 		// check if overflow is set, and if data is about to be overwritten
 		if (this.overflow && this.size + arguments.length > this.length) {
@@ -148,7 +147,7 @@ CBuffer.prototype = {
 
 	/* accessor methods */
 	// return index of first matched element
-	indexOf : function(arg, idx) {
+	indexOf : function (arg, idx) {
 		if (!idx) idx = 0;
 		for (; idx < this.size; idx++) {
 			if (this.data[(this.start + idx) % this.length] === arg) return idx;
@@ -156,7 +155,7 @@ CBuffer.prototype = {
 		return -1;
 	},
 	// return last index of the first match
-	lastIndexOf : function(arg, idx) {
+	lastIndexOf : function (arg, idx) {
 		if (!idx) idx = this.size - 1;
 		for (; idx >= 0; idx--) {
 			if (this.data[(this.start + idx) % this.length] === arg) return idx;
@@ -166,7 +165,7 @@ CBuffer.prototype = {
 
 	/* iteration methods */
 	// check every item in the array against a test
-	every : function(callback, context) {
+	every : function (callback, context) {
 		var i = 0;
 		for (; i < this.size; i++) {
 			if (!callback.call(context, this.data[(this.start + i) % this.length], i, this))
@@ -175,14 +174,14 @@ CBuffer.prototype = {
 		return true;
 	},
 	// loop through each item in buffer
-	forEach : function(callback, context) {
+	forEach : function (callback, context) {
 		var i = 0;
 		for (; i < this.size; i++) {
 			callback.call(context, this.data[(this.start + i) % this.length], i, this);
 		}
 	},
 	// check items agains test until one returns true
-	some : function(callback, context) {
+	some : function (callback, context) {
 		var i = 0;
 		for (; i < this.size; i++) {
 			if (callback.call(context, this.data[(this.start + i) % this.length], i, this))
@@ -195,14 +194,14 @@ CBuffer.prototype = {
 	// reset pointers to buffer with zero items
 	// note: this will not remove values in cbuffer, so if for security values
 	//       need to be overwritten, run `.fill(null).empty()`
-	empty : function() {
+	empty : function () {
 		var i = 0;
 		this.size = this.start = 0;
 		this.end = this.length - 1;
 		return this;
 	},
 	// fill all places with passed value or function
-	fill : function(arg) {
+	fill : function (arg) {
 		var i = 0;
 		if (typeof arg === 'function') {
 			while(this.data[i] = arg(), ++i < this.length);
@@ -215,23 +214,23 @@ CBuffer.prototype = {
 		return this;
 	},
 	// return first item in buffer
-	first : function() {
+	first : function () {
 		return this.data[this.start];
 	},
 	// return last item in buffer
-	last : function() {
+	last : function () {
 		return this.data[this.end];
 	},
 	// return specific index in buffer
-	get : function(arg) {
+	get : function (arg) {
 		return this.data[(this.start + arg) % this.length];
 	},
 	// set value at specified index
-	set : function(idx, arg) {
+	set : function (idx, arg) {
 		return this.data[(this.start + idx) % this.length] = arg;
 	},
 	// return clean array of values
-	toArray : function() {
+	toArray : function () {
 		var narr = new Array(this.size),
 			i = 0;
 		for (; i < this.size; i++) {

@@ -1,43 +1,43 @@
-var vows = require( 'vows' ),
-	assert = require('assert' )
-	suite = vows.describe( 'CBuffer' );
+var vows = require('vows'),
+    assert = require('assert')
+    suite = vows.describe('CBuffer');
 
-require( '../env' );
+require('../env');
 
 suite.addBatch({
 	'shift' : {
-		'topic' : function() {
+		'topic' : function () {
 			return CBuffer;
 		},
-		'shift items' : function( CBuffer ) {
+		'shift items' : function (CBuffer) {
 			var tmp;
 
-			tmp = CBuffer( 1, 2, 3 );
-			assert.equal( tmp.shift(), 1 );
-			assert.deepEqual( tmp.data, [ , 2, 3 ]);
+			tmp = CBuffer(1, 2, 3);
+			assert.equal(tmp.shift(), 1);
+			assert.deepEqual(tmp.data, [, 2, 3]);
 
-			tmp = CBuffer( 1, 2, 3 );
-			tmp.push( 4 );
-			assert.equal( tmp.shift(), 2 );
-			assert.deepEqual( tmp.data, [ 4, , 3 ]);
+			tmp = CBuffer(1, 2, 3);
+			tmp.push(4);
+			assert.equal(tmp.shift(), 2);
+			assert.deepEqual(tmp.data, [4,, 3]);
 		},
-		'shift properties' : function( CBuffer ) {
+		'shift properties' : function (CBuffer) {
 			var tmp;
 
-			tmp = CBuffer( 1, 2, 3 );
+			tmp = CBuffer(1, 2, 3);
 			tmp.shift();
-			assert.equal( tmp.size, 2 );
-			assert.equal( tmp.start, 1 );
-			assert.equal( tmp.end, 2 );
+			assert.equal(tmp.size, 2);
+			assert.equal(tmp.start, 1);
+			assert.equal(tmp.end, 2);
 
-			tmp = CBuffer( 1, 2, 3 );
-			tmp.push( 4 );
+			tmp = CBuffer(1, 2, 3);
+			tmp.push(4);
 			tmp.shift();
-			assert.equal( tmp.size, 2 );
-			assert.equal( tmp.start, 2 );
-			assert.equal( tmp.end, 0 );
+			assert.equal(tmp.size, 2);
+			assert.equal(tmp.start, 2);
+			assert.equal(tmp.end, 0);
 		}
 	}
 });
 
-suite.export( module );
+suite.export(module);

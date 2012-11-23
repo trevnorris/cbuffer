@@ -1,17 +1,17 @@
-var vows = require( 'vows' ),
-	assert = require('assert' )
-	suite = vows.describe( 'CBuffer' );
+var vows = require('vows'),
+    assert = require('assert')
+    suite = vows.describe('CBuffer');
 
-require( '../env.js' );
+require('../env.js');
 
 suite.addBatch({
 	'' : {
-		'topic' : function() {
+		'topic' : function () {
 			return CBuffer;
 		},
-		'' : function( CBuffer ) {
+		'' : function (CBuffer) {
 		}
 	}
 });
 
-suite.export( module );
+suite.export(module);
