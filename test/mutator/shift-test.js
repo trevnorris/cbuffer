@@ -1,5 +1,5 @@
 var vows = require('vows'),
-    assert = require('assert')
+    assert = require('assert'),
     suite = vows.describe('CBuffer');
 
 require('../env');
