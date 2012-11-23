@@ -125,7 +125,9 @@ CBuffer.prototype = {
 	// sort items
 	sort : function (fn) {
 		if (fn) this.data.sort(fn);
-		else this.data.sort();
+		else if (this.data.sort) this.data.sort();
+		else Array.prototype.sort.call(this.data);
+		// TODO: this will fail for unset values of TypedArrayViews
 		this.start = 0;
 		this.end = this.size - 1;
 		return this;
