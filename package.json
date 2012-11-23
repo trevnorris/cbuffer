@@ -16,6 +16,9 @@
 	"devDependencies" : {
 		"vows" : "latest"
 	},
+	"scripts" : {
+		"test" : "node ./node_modules/.bin/vows"
+	},
 	"repository" : {
 		"type" : "git",
 		"url" : "https://github.com/trevnoris/cbuffer.git"
