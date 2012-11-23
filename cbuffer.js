@@ -1,6 +1,7 @@
 (function (global) {
 
 function CBuffer() {
+	var firstArgType = typeof arguments[0];
 	// handle cases where "new" keyword wasn't used
 	if (!(this instanceof CBuffer)) {
 		// multiple conditions need to be checked to properly emulate Array
@@ -17,13 +18,22 @@ function CBuffer() {
 	// set to callback fn if data is about to be overwritten
 	this.overflow = false;
 	// emulate Array based on passed arguments
-	if (arguments.length > 1 || typeof arguments[0] !== 'number') {
+	if (arguments.length > 1) {
 		this.data = new Array(arguments.length);
 		this.end = (this.length = arguments.length) - 1;
 		this.push.apply(this, arguments);
-	} else {
+	// if first argument is number, then use normal array
+	} else if (firstArgType == 'number') {
 		this.data = new Array(arguments[0]);
 		this.end = (this.length = arguments[0]) - 1;
+	// if type is object, then assume is supplying own data type
+	// (e.g. passed in a TypedArray)
+	} else if (firstArgType == 'object') {
+		this.data = arguments[0];
+		this.end = (this.length = arguments[0].length) - 1;
+	// unsupported argument type
+	} else {
+		throw Error('Unsupported argument type');
 	}
 	// need to `return this` so `return CBuffer.apply` works
 	return this;
@@ -75,7 +85,7 @@ CBuffer.prototype = {
 	// reverse order of the buffer
 	reverse : function () {
 		var i = 0,
-			tmp;
+		    tmp;
 		for (; i < ~~(this.size / 2); i++) {
 			tmp = this.data[(this.start + i) % this.length];
 			this.data[(this.start + i) % this.length] = this.data[(this.start + (this.size - i - 1)) % this.length];
@@ -236,7 +246,7 @@ CBuffer.prototype = {
 	// return clean array of values
 	toArray : function () {
 		var narr = new Array(this.size),
-			i = 0;
+		    i = 0;
 		for (; i < this.size; i++) {
 			narr[i] = this.data[(this.start + i) % this.length];
 		}
