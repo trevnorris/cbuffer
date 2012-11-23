@@ -14,12 +14,12 @@ suite.addBatch({
 
 			tmp = CBuffer(1, 2, 3);
 			assert.equal(tmp.shift(), 1);
-			assert.deepEqual(tmp.data, [, 2, 3]);
+			assert.deepEqual(tmp.toArray(), [2, 3]);
 
 			tmp = CBuffer(1, 2, 3);
 			tmp.push(4);
 			assert.equal(tmp.shift(), 2);
-			assert.deepEqual(tmp.data, [4,, 3]);
+			assert.deepEqual(tmp.toArray(), [3, 4]);
 		},
 		'shift properties' : function (CBuffer) {
 			var tmp;

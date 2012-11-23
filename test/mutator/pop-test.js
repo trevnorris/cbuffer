@@ -17,7 +17,7 @@ suite.addBatch({
 
 			tmp = CBuffer(1, 2, 3);
 			tmp.pop();
-			assert.deepEqual(tmp.data, [1, 2,]);
+			assert.deepEqual(tmp.toArray(), [1, 2]);
 
 			tmp = CBuffer(3);
 			assert.isUndefined(tmp.pop());

@@ -42,6 +42,7 @@ CBuffer.prototype = {
 		// no need to delete item, since resize will make it inaccessible to
 		// CBuffer methods
 		this.end = (this.end - 1 + this.length) % this.length;
+		this.size--;
 		return item;
 	},
 	// push item to the end
