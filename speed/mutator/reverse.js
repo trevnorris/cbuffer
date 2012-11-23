@@ -1,14 +1,15 @@
+const SIZE = 1e5;
+
 var CBuffer = require('../../cbuffer'),
-	test = require('../test'),
-	cb = new CBuffer(),
-	arr = new Array(),
-	i;
+    test = require('../test'),
+    cb = new CBuffer(SIZE),
+    arr = [],
+    i;
 
-for (i = 1e5; i > 0; i--)
-	cb.push(i);
-
-for (i = 1e5; i > 0; i--)
+for (i = SIZE; i > 0; i--) {
 	arr.push(i);
+	cb.push(i);
+}
 
 test('reverse - CBuffer', function () {
 	cb.reverse();
