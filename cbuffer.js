@@ -170,46 +170,25 @@ CBuffer.prototype = {
 	// check every item in the array against a test
 	every : function(callback, context) {
 		var i = 0;
-		if (context) {
-			for (; i < this.size; i++) {
-				if (!callback.call(context, this.data[(this.start + i) % this.length], i, this))
-					return false;
-			}
-		} else {
-			for (; i < this.size; i++) {
-				if (!callback(this.data[(this.start + i) % this.length], i, this))
-					return false;
-			}
+		for (; i < this.size; i++) {
+			if (!callback.call(context, this.data[(this.start + i) % this.length], i, this))
+				return false;
 		}
 		return true;
 	},
 	// loop through each item in buffer
 	forEach : function(callback, context) {
 		var i = 0;
-		// check if context was passed
-		if (context) {
-			for (; i < this.size; i++) {
-				callback.call(context, this.data[(this.start + i) % this.length], i, this);
-			}
-		} else {
-			for (; i < this.size; i++) {
-				callback(this.data[(this.start + i) % this.length], i, this);
-			}
+		for (; i < this.size; i++) {
+			callback.call(context, this.data[(this.start + i) % this.length], i, this);
 		}
 	},
 	// check items agains test until one returns true
 	some : function(callback, context) {
 		var i = 0;
-		if (context) {
-			for (; i < this.size; i++) {
-				if (callback.call(context, this.data[(this.start + i) % this.length], i, this))
-					return true;
-			}
-		} else {
-			for (; i < this.size; i++) {
-				if (callback(this.data[(this.start + i) % this.length], i, this))
-					return true;
-			}
+		for (; i < this.size; i++) {
+			if (callback.call(context, this.data[(this.start + i) % this.length], i, this))
+				return true;
 		}
 		return false;
 	},
