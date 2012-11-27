@@ -10,11 +10,11 @@ test('unshift 1e5 - CBuffer', function () {
 }, function () {
 	var i = SIZE;
 	while(cb.unshift(i), --i >= 0);
-});
+}, SIZE);
 
 test('unshift 1e5 - Array  ', function () {
 	arr.length = 0;
 }, function () {
 	var i = SIZE;
 	while(arr.unshift(i), --i >= 0);
-});
+}, SIZE);

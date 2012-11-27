@@ -14,7 +14,7 @@ test('shift 1e4 - CBuffer', function () {
 	for (var i = SIZE; i >= 0; i--) {
 		cb.shift();
 	}
-});
+}, SIZE);
 
 test('shift 1e4 - Array  ', function () {
 	arr.length = 0;
@@ -25,4 +25,4 @@ test('shift 1e4 - Array  ', function () {
 	for (var i = SIZE; i >= 0; i--) {
 		arr.shift();
 	}
-});
+}, SIZE);

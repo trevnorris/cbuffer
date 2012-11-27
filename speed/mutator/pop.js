@@ -7,22 +7,20 @@ var CBuffer = require('../../cbuffer'),
 
 test('pop 1e5 - CBuffer', function () {
 	cb.empty();
-	for (var i = 0; i < SIZE; i++) {
-		cb.push(1);
-	}
+	cb.fill(0.1);
 }, function () {
 	for (var i = SIZE; i >= 0; i--) {
 		cb.pop();
 	}
-});
+}, SIZE);
 
 test('pop 1e5 - Array  ', function () {
 	arr.length = 0;
 	for (var i = 0; i < SIZE; i++) {
-		arr.push(1);
+		arr.push(0.1);;
 	}
 }, function () {
 	for (var i = SIZE; i >= 0; i--) {
 		arr.pop();
 	}
-});
+}, SIZE);

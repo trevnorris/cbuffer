@@ -13,8 +13,8 @@ for (i = SIZE; i > 0; i--) {
 
 test('reverse - CBuffer', function () {
 	cb.reverse();
-});
+}, SIZE);
 
 test('reverse - Array  ', function () {
 	arr.reverse();
-});
+}, SIZE);
