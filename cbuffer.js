@@ -1,4 +1,4 @@
-(function (global) {
+(function () {
 
 function CBuffer() {
 	// handle cases where "new" keyword wasn't used
@@ -36,37 +36,40 @@ CBuffer.prototype = {
 	/* mutator methods */
 	// pop last item
 	pop : function () {
-		var item;
 		if (this.size === 0) return;
-		item = this.data[this.end];
 		// no need to delete item, since resize will make it inaccessible to
 		// CBuffer methods
 		this.end = (this.end - 1 + this.length) % this.length;
 		this.size--;
-		return item;
+		// this may seem ridiculous, but does offer a perf bonus
+		return this.data[(this.end + 1) % this.length];
 	},
+
 	// push item to the end
 	push : function () {
-		var i = 0;
+		var i;
 		// check if overflow is set, and if data is about to be overwritten
 		if (this.overflow && this.size + arguments.length > this.length) {
 			// call overflow function and send data that's about to be overwritten
-			for (; i < this.size + arguments.length - this.length; i++) {
+			for (i = 0; i < this.size + arguments.length - this.length; i++) {
 				this.overflow(this.data[(this.end + i + 1) % this.length], this);
 			}
 		}
 		// push items to the end, wrapping and erasing existing items
-		// using arguments variable directly to reduce gc footprint
-		for (i = 0; i < arguments.length; i++) {
-			this.data[(this.end + i + 1) % this.length] = arguments[i];
+		if (arguments.length === 1) {
+			this.data[(this.end + 1) % this.length] = arguments[0];
+		} else {
+			for (i = 0; i < arguments.length; i++) {
+				this.data[(this.end + i + 1) % this.length] = arguments[i];
+			}
 		}
 		// recalculate size
 		if (this.size < this.length) {
-			if (this.size + i > this.length) this.size = this.length;
-			else this.size += i;
+			if (this.size + arguments.length > this.length) this.size = this.length;
+			else this.size += arguments.length;
 		}
 		// recalculate end
-		this.end = (this.end + i) % this.length;
+		this.end = (this.end + arguments.length) % this.length;
 		// recalculate start
 		this.start = (this.length + this.end - this.size + 1) % this.length;
 		// return number current number of items in CBuffer
@@ -122,11 +125,11 @@ CBuffer.prototype = {
 	},
 	// add item to beginning of buffer
 	unshift : function () {
-		var i = 0;
+		var i;
 		// check if overflow is set, and if data is about to be overwritten
 		if (this.overflow && this.size + arguments.length > this.length) {
 			// call overflow function and send data that's about to be overwritten
-			for (; i < this.size + arguments.length - this.length; i++) {
+			for (i = 0; i < this.size + arguments.length - this.length; i++) {
 				this.overflow(this.data[this.end - (i % this.length)], this);
 			}
 		}
@@ -138,8 +141,12 @@ CBuffer.prototype = {
 			if (this.end < 0) this.end = this.length + (this.end % this.length);
 		}
 		if (this.size < this.length) {
-			if (this.size + i > this.length) this.size = this.length;
-			else this.size += i;
+			if (this.size + i > this.length) {
+				this.size = this.length;
+			} else {
+				// TODO: this is causing a bailout
+				this.size += i;
+			}
 		}
 		this.start -= arguments.length;
 		if (this.start < 0) this.start = this.length + (this.start % this.length);
@@ -209,7 +216,8 @@ CBuffer.prototype = {
 		if (typeof arg === 'function') {
 			while(this.data[i] = arg(), ++i < this.length);
 		} else {
-			while(this.data[i] = arg, ++i < this.length);
+			// for some reason using `arg` causes v8 to bailout
+			while(this.data[i] = arguments[0], ++i < this.length);
 		}
 		// reposition start/end
 		this.start = 0;
@@ -244,7 +252,9 @@ CBuffer.prototype = {
 	}
 };
 
+// check if running as node module
 if (typeof module === 'object' && module.exports) module.exports = CBuffer;
-else global.CBuffer = CBuffer;
+// otherwise attache to global context
+else this.CBuffer = CBuffer;
 
-}(this));
+}());
