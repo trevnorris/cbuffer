@@ -212,6 +212,7 @@ CBuffer.prototype = {
 		// reposition start/end
 		this.start = 0;
 		this.end = this.length - 1;
+		this.size = this.length;
 		return this;
 	},
 	// return first item in buffer

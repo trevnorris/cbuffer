@@ -69,7 +69,7 @@ myBuff.push(5);       // log: 1
 #### Utility Methods
 
 * empty       - Equivalent to setting `Array.length = 0`.
-* fill        - Fill all set values with passed argument. Also supports functions.
+* fill        - Fill with passed argument. Also supports functions.
 * first       - Returns first value in circular buffer.
 * last        - Returns last value in circular buffer.
 * get         - Get value at specific index.
