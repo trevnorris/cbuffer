@@ -175,6 +175,7 @@ CBuffer.prototype = {
 		return true;
 	},
 	// loop through each item in buffer
+	// TODO: figure out how to emulate Array use better
 	forEach : function (callback, context) {
 		var i = 0;
 		for (; i < this.size; i++) {
@@ -182,6 +183,7 @@ CBuffer.prototype = {
 		}
 	},
 	// check items agains test until one returns true
+	// TODO: figure out how to emuldate Array use better
 	some : function (callback, context) {
 		var i = 0;
 		for (; i < this.size; i++) {
