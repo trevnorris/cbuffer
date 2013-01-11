@@ -229,6 +229,9 @@ CBuffer.prototype = {
 	get : function (arg) {
 		return this.data[(this.start + arg) % this.length];
 	},
+	isFull : function (arg) {
+		return this.length === this.size;
+	},
 	// set value at specified index
 	set : function (idx, arg) {
 		return this.data[(this.start + idx) % this.length] = arg;
