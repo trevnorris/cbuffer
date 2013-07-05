@@ -15,7 +15,7 @@ function CBuffer() {
 	// this is the same in either scenario
 	this.size = this.start = 0;
 	// set to callback fn if data is about to be overwritten
-	this.overflow = false;
+	this.overflow = null;
 	// emulate Array based on passed arguments
 	if (arguments.length > 1 || typeof arguments[0] !== 'number') {
 		this.data = new Array(arguments.length);
@@ -39,8 +39,8 @@ CBuffer.prototype = {
 		var item;
 		if (this.size === 0) return;
 		item = this.data[this.end];
-		// no need to delete item, since resize will make it inaccessible to
-		// CBuffer methods
+		// remove the reference to the object so it can be garbage collected
+		delete this.data[this.end];
 		this.end = (this.end - 1 + this.length) % this.length;
 		this.size--;
 		return item;
@@ -85,7 +85,8 @@ CBuffer.prototype = {
 	},
 	// rotate buffer to the left by cntr, or by 1
 	rotateLeft : function (cntr) {
-		if (!cntr) cntr = 1;
+		if (typeof cntr === 'undefined') cntr = 1;
+		if (typeof cntr !== 'number') throw new Error("Argument must be a number");
 		while (--cntr >= 0) {
 			this.push(this.shift());
 		}
@@ -93,7 +94,8 @@ CBuffer.prototype = {
 	},
 	// rotate buffer to the right by cntr, or by 1
 	rotateRight : function (cntr) {
-		if (!cntr) cntr = 1;
+		if (typeof cntr === 'undefined') cntr = 1;
+		if (typeof cntr !== 'number') throw new Error("Argument must be a number");
 		while (--cntr >= 0) {
 			this.unshift(this.pop());
 		}
