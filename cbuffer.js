@@ -194,7 +194,24 @@ CBuffer.prototype = {
 		}
 		return false;
 	},
-
+	// loop through each item in buffer and calculate average
+	avg : function () {
+		var i = 0;
+		var s=0;
+		for (; i < this.size; i++) {
+			s+=this.data[(this.start + i) % this.length];
+		}
+		return this.size==0?0:(s/this.size);
+	},
+	// loop through each item in buffer and calculate sum
+	sum : function () {
+		var i = 0;
+		var s=0;
+		for (; i < this.size; i++) {
+			s+=this.data[(this.start + i) % this.length];
+		}
+		return s;
+	},
 	/* utility methods */
 	// reset pointers to buffer with zero items
 	// note: this will not remove values in cbuffer, so if for security values
