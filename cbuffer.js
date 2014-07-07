@@ -214,6 +214,8 @@ CBuffer.prototype = {
 	},
 	// loop through each item in buffer and calculate median
   	median : function () {
+  		if (this.size === 0)
+  			return 0;
     	var values = this.toArray().sort();
     	var half = Math.floor(values.length / 2);
     	if(values.length % 2)
