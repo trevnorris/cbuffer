@@ -5,13 +5,14 @@ function CBuffer() {
 	if (!(this instanceof CBuffer)) {
 		// multiple conditions need to be checked to properly emulate Array
 		if (arguments.length > 1 || typeof arguments[0] !== 'number') {
-			return CBuffer.apply(new CBuffer(), arguments);
+			return CBuffer.apply(new CBuffer(arguments.length), arguments);
 		} else {
 			return new CBuffer(arguments[0]);
 		}
 	}
 	// if no arguments, then nothing needs to be set
-	if (arguments.length === 0) return this;
+	if (arguments.length === 0)
+    throw new Error('Missing Argument: You must pass a valid buffer length');
 	// this is the same in either scenario
 	this.size = this.start = 0;
 	// set to callback fn if data is about to be overwritten
