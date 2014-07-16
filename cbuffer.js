@@ -11,7 +11,7 @@ function CBuffer() {
 		}
 	}
 	// if no arguments, then nothing needs to be set
-	if (arguments.length === 0) return this;
+	if (arguments.length === 0) { throw new Error('Missing Argument: You must pass a valid buffer length'); }
 	// this is the same in either scenario
 	this.size = this.start = 0;
 	// set to callback fn if data is about to be overwritten
