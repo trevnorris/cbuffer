@@ -5,7 +5,7 @@ function CBuffer() {
 	if (!(this instanceof CBuffer)) {
 		// multiple conditions need to be checked to properly emulate Array
 		if (arguments.length > 1 || typeof arguments[0] !== 'number') {
-			return CBuffer.apply(new CBuffer(), arguments);
+			return CBuffer.apply(new CBuffer(arguments.length), arguments);
 		} else {
 			return new CBuffer(arguments[0]);
 		}

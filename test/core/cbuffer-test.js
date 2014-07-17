@@ -1,5 +1,5 @@
 var vows = require('vows'),
-    assert = require('assert')
+    assert = require('assert'),
     suite = vows.describe('CBuffer'),
     und = undefined;
 
@@ -16,6 +16,10 @@ suite.addBatch({
 			assert.isTrue((new CBuffer(1, 2, 3)) instanceof CBuffer);
 			assert.isTrue(CBuffer(1, 2, 3) instanceof CBuffer);
 			assert.isTrue(CBuffer(1).constructor === CBuffer);
+		},
+		'Missing argument exception': function () {
+			assert.throws(function () { CBuffer(); }, Error);
+			assert.throws(function () { new CBuffer(); }, Error);
 		},
 		'data' : function (CBuffer) {
 			assert.deepEqual(CBuffer(3).data, [,,]);
