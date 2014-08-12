@@ -45,13 +45,14 @@ myBuff.push(5);       // log: 1
 * rotateLeft  - Rotates all elements left 1, or n, times.
 * rotateRight - Rotates all elements right 1, or n, times.
 * shift       - Removes the first element from a circular buffer and returns that element.
-* sort        - Sorts the elements of a circular buffer.
+* sort        - Sorts the elements of a circular buffer. Unlike native `sort`, the default comparitor sorts by `a > b`.
 * unshift     - Adds one or more elements to the front of a circular buffer and returns the new size.
 
 #### Accessor Methods
 
 * indexOf     - Returns the first (least) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
 * lastIndexOf - Returns the last (greatest) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
+* sortedIndex - Returns the position some `value` would be inserted into a sorted circular buffer ranked by an optional comparitor.
 
 #### Iteration Methods
 
