@@ -12,7 +12,7 @@ function CBuffer() {
 	}
 	// if no arguments, then nothing needs to be set
 	if (arguments.length === 0)
-    throw new Error('Missing Argument: You must pass a valid buffer length');
+	throw new Error('Missing Argument: You must pass a valid buffer length');
 	// this is the same in either scenario
 	this.size = this.start = 0;
 	// set to callback fn if data is about to be overwritten
@@ -28,6 +28,10 @@ function CBuffer() {
 	}
 	// need to `return this` so `return CBuffer.apply` works
 	return this;
+}
+
+function defaultComparitor(a, b) {
+	return a == b ? 0 : a > b ? 1 : -1;
 }
 
 CBuffer.prototype = {
@@ -117,8 +121,7 @@ CBuffer.prototype = {
 	},
 	// sort items
 	sort : function (fn) {
-		if (fn) this.data.sort(fn);
-		else this.data.sort();
+		this.data.sort(fn || defaultComparitor);
 		this.start = 0;
 		this.end = this.size - 1;
 		return this;
@@ -165,6 +168,29 @@ CBuffer.prototype = {
 			if (this.data[(this.start + idx) % this.length] === arg) return idx;
 		}
 		return -1;
+	},
+
+	// return the index an item would be inserted to if this
+	// is a sorted circular buffer
+	sortedIndex : function(value, comparitor, context) {
+		comparitor = comparitor || defaultComparitor;
+		var low = this.start,
+			high = this.size - 1;
+
+		// Tricky part is finding if its before or after the pivot
+		// we can get this info by checking if the target is less than
+		// the last item. After that it's just a typical binary search.
+		if (low && comparitor.call(context, value, this.data[high]) > 0) {
+			low = 0, high = this.end;
+		}
+
+		while (low < high) {
+		  var mid = (low + high) >>> 1;
+		  if (comparitor.call(context, value, this.data[mid]) > 0) low = mid + 1;
+		  else high = mid;
+		}
+		// http://stackoverflow.com/a/18618273/1517919
+		return (((low - this.start) % this.size) + this.size) % this.size;
 	},
 
 	/* iteration methods */
@@ -214,16 +240,16 @@ CBuffer.prototype = {
 		return s;
 	},
 	// loop through each item in buffer and calculate median
-  	median : function () {
-  		if (this.size === 0)
-  			return 0;
-    	var values = this.toArray().sort();
-    	var half = Math.floor(values.length / 2);
-    	if(values.length % 2)
-        	return values[half];
-    	else
-        	return (values[half-1] + values[half]) / 2.0;
-  	},
+	median : function () {
+		if (this.size === 0)
+			return 0;
+		var values = this.toArray().sort();
+		var half = Math.floor(values.length / 2);
+		if(values.length % 2)
+			return values[half];
+		else
+			return (values[half-1] + values[half]) / 2.0;
+	},
 	/* utility methods */
 	// reset pointers to buffer with zero items
 	// note: this will not remove values in cbuffer, so if for security values
