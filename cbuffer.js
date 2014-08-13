@@ -221,22 +221,15 @@ CBuffer.prototype = {
 		}
 		return false;
 	},
-	// loop through each item in buffer and calculate average
+	// calculate the average value of a circular buffer
 	avg : function () {
-		var i = 0;
-		var s=0;
-		for (; i < this.size; i++) {
-			s+=this.data[(this.start + i) % this.length];
-		}
-		return this.size==0?0:(s/this.size);
+		return this.size == 0 ? 0 : (this.sum() / this.size);
 	},
 	// loop through each item in buffer and calculate sum
 	sum : function () {
-		var i = 0;
-		var s=0;
-		for (; i < this.size; i++) {
-			s+=this.data[(this.start + i) % this.length];
-		}
+		var index = this.size;
+		var s = 0;
+		while (index--) s += this.data[index];
 		return s;
 	},
 	// loop through each item in buffer and calculate median
