@@ -70,3 +70,4 @@ myBuff.push(5);       // log: 1
 * set         - Set value as specific index.
 * toArray     - Return clean ordered array of buffer.
 * overflow    - Set to function and will be called when data is about to be overwritten.
+* slice       - Return a slice of the buffer as an array.
