@@ -236,7 +236,7 @@ CBuffer.prototype = {
 	median : function () {
 		if (this.size === 0)
 			return 0;
-		var values = this.toArray().sort();
+		var values = this.slice().sort(defaultComparitor);
 		var half = Math.floor(values.length / 2);
 		if(values.length % 2)
 			return values[half];
@@ -288,12 +288,29 @@ CBuffer.prototype = {
 	},
 	// return clean array of values
 	toArray : function () {
-		var narr = new Array(this.size),
-			i = 0;
-		for (; i < this.size; i++) {
-			narr[i] = this.data[(this.start + i) % this.length];
+		return this.slice();
+	},
+	// slice the buffer to an arraay
+	slice : function(start, end) {
+		var length = this.size;
+		start = +start || 0;
+		if (start < 0) {
+			start = -start > length ? 0 : length + start;
 		}
-		return narr;
+		if (end == null || end > length) {
+			end = length;
+		} else if (end < 0) {
+			end += length;
+		} else {
+			end = +end || 0;
+		}
+
+		length = start < end ? end - start : 0;
+		var result = Array(length);
+		for (var index = 0; index < length; index++) {
+			result[index] = this.data[(this.start + start + index) % this.length];
+		}
+		return result;
 	}
 };
 
