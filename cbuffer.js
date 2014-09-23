@@ -174,8 +174,9 @@ CBuffer.prototype = {
 	// is a sorted circular buffer
 	sortedIndex : function(value, comparitor, context) {
 		comparitor = comparitor || defaultComparitor;
-		var low = this.start,
-			high = this.size - 1;
+		var isFull = this.length === this.size,
+			low = this.start,
+			high = isFull ? this.size - 1 : this.size;
 
 		// Tricky part is finding if its before or after the pivot
 		// we can get this info by checking if the target is less than
@@ -189,8 +190,9 @@ CBuffer.prototype = {
 		  if (comparitor.call(context, value, this.data[mid]) > 0) low = mid + 1;
 		  else high = mid;
 		}
-		// http://stackoverflow.com/a/18618273/1517919
-		return (((low - this.start) % this.size) + this.size) % this.size;
+		return !isFull ? low :
+			// http://stackoverflow.com/a/18618273/1517919
+			(((low - this.start) % this.size) + this.size) % this.size;
 	},
 
 	/* iteration methods */

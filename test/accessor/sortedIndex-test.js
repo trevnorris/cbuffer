@@ -40,6 +40,12 @@ suite.addBatch({
 				'works with partially complete buffers': function(buffer) {
 					assert.equal(buffer.sortedIndex(3), 2);
 					assert.equal(buffer.sortedIndex(8), 7);
+				},
+				'can determine postion in a fixed length buffer': function(buffer) {
+					assert.equal(buffer.sortedIndex(0), 0);
+					assert.equal(buffer.sortedIndex(1), 0);
+					assert.equal(buffer.sortedIndex(3), 2);
+					assert.equal(buffer.sortedIndex(10), 8);
 				}
 			},
 
@@ -90,8 +96,6 @@ suite.addBatch({
 				}
 			}
 		}
-
-
 	}
 });
 
