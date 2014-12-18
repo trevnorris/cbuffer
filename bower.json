@@ -1,0 +1,18 @@
+{
+  "name": "CBuffer",
+  "main": "cbuffer.js",
+  "version": "1.1.0",
+  "homepage": "https://github.com/trevnorris/cbuffer",
+  "authors": [
+    "Trevor Norris <trev.norris@gmail.com>"
+  ],
+  "description": "Circular Buffer JavaScript implementation",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
