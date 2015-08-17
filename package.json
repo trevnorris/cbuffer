@@ -1,6 +1,6 @@
 {
 	"name" : "CBuffer",
-	"version" : "1.1.0",
+	"version" : "1.1.1",
 	"description" : "Circular Buffer JavaScript implementation",
 	"homepage" : "https://github.com/trevnorris/cbuffer",
 	"main" : "./cbuffer.js",
