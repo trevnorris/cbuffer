@@ -26,14 +26,14 @@ suite.addBatch({
 
 			tmp = CBuffer(1, 2, 3);
 			tmp.shift();
-			assert.equal(tmp.size, 2);
+			assert.equal(tmp.length, 2);
 			assert.equal(tmp.start, 1);
 			assert.equal(tmp.end, 2);
 
 			tmp = CBuffer(1, 2, 3);
 			tmp.push(4);
 			tmp.shift();
-			assert.equal(tmp.size, 2);
+			assert.equal(tmp.length, 2);
 			assert.equal(tmp.start, 2);
 			assert.equal(tmp.end, 0);
 		}

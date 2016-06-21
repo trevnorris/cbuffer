@@ -30,11 +30,11 @@ suite.addBatch({
 			assert.equal(CBuffer(1, 2, 3).end, 2);
 		},
 		'length' : function (CBuffer) {
-			assert.equal(CBuffer(3).length, 3);
+			assert.equal(CBuffer(3).length, 0);
 			assert.equal(CBuffer(1, 2, 3).length, 3);
 		},
 		'size' : function (CBuffer) {
-			assert.equal(CBuffer(3).size, 0);
+			assert.equal(CBuffer(3).size, 3);
 			assert.equal(CBuffer(1, 2, 3).size, 3);
 		},
 		'start' : function (CBuffer) {

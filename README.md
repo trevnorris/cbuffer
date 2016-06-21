@@ -15,8 +15,8 @@ currently implemented API.
 It's simple. Just use it like you would use an Array.
 
 ```javascript
-new CBuffer(10);      // empty buffer with length of 10
-new CBuffer(1,2,3,4); // buffer with length 4
+new CBuffer(10);      // empty buffer with size of 10
+new CBuffer(1,2,3,4); // buffer with size 4
 CBuffer(5);           // For those who are really lazy, new is optional
 ```
 
@@ -40,13 +40,13 @@ myBuff.push(5);       // log: 1
 #### Mutator Methods
 
 * pop         - Removes the last element from a circular buffer and returns that element.
-* push        - Adds one or more elements to the end of a circular buffer and returns the new size.
+* push        - Adds one or more elements to the end of a circular buffer and returns the new length.
 * reverse     - Reverses the order of the elements of a circular buffer.
 * rotateLeft  - Rotates all elements left 1, or n, times.
 * rotateRight - Rotates all elements right 1, or n, times.
 * shift       - Removes the first element from a circular buffer and returns that element.
 * sort        - Sorts the elements of a circular buffer. Unlike native `sort`, the default comparitor sorts by `a > b`.
-* unshift     - Adds one or more elements to the front of a circular buffer and returns the new size.
+* unshift     - Adds one or more elements to the front of a circular buffer and returns the new length.
 
 #### Accessor Methods
 

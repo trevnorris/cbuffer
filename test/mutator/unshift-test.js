@@ -23,7 +23,7 @@ suite.addBatch({
 
 			tmp = CBuffer(3);
 			tmp.unshift(1, 2);
-			assert.equal(tmp.size, 2);
+			assert.equal(tmp.length, 2);
 			assert.equal(tmp.start, 1);
 			assert.equal(tmp.end, 2);
 		}
