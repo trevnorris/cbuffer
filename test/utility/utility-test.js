@@ -14,7 +14,7 @@ suite.addBatch({
 
 			tmp = new CBuffer(1,2,3);
 			tmp.empty();
-			assert.equal(tmp.size, 0);
+			assert.equal(tmp.length, 0);
 		},
 		'fill' : function (CBuffer) {
 			var  tmp;
