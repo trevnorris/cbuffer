@@ -239,8 +239,8 @@ CBuffer.prototype = {
 		if (this.length === 0)
 			return 0;
 		var values = this.slice().sort(defaultComparitor);
-		var half = Math.floor(values.size / 2);
-		if(values.size % 2)
+		var half = Math.floor(values.length / 2);
+		if(values.length % 2)
 			return values[half];
 		else
 			return (values[half-1] + values[half]) / 2.0;
