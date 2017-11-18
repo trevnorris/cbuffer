@@ -217,15 +217,15 @@ CBuffer.prototype = {
 			callback.call(context, this.data[(this.start + i) % this.size], i, this);
 		}
 	},
-  // construct new CBuffer of same length, apply map function, and return new CBuffer
-  map : function (callback, context) {
-    var outCBuffer = new CBuffer(this.size);
-    for (var i = 0; i < this.length; i++) {
-      var n = (this.start + i) % this.size;
-      outCBuffer.push(callback.call(context, this.data[n], i, this));
-    }
-    return outCBuffer;
-  },
+	// construct new CBuffer of same length, apply map function, and return new CBuffer
+	map : function (callback, context) {
+		var outCBuffer = new CBuffer(this.size);
+		for (var i = 0; i < this.length; i++) {
+			var n = (this.start + i) % this.size;
+			outCBuffer.push(callback.call(context, this.data[n], i, this));
+		}
+		return outCBuffer;
+	},
 	// check items agains test until one returns true
 	// TODO: figure out how to emulate Array use better
 	some : function (callback, context) {
@@ -305,16 +305,16 @@ CBuffer.prototype = {
 	toArray : function () {
 		return this.slice();
 	},
-  // return a string based on the array
-  join : function(separator) {
-    if (!separator) separator = ',';
-    var outString = new String(this.data[0]);
-    for (var i = 1; i < this.length; i++) {
-      var n = (this.start + i) % this.size;
-      outString = outString.concat(separator, this.data[i]);
-    }
-    return outString;
-  },
+	// return a string based on the array
+	join : function(separator) {
+		if (!separator) separator = ',';
+		var outString = new String(this.data[0]);
+		for (var i = 1; i < this.length; i++) {
+			var n = (this.start + i) % this.size;
+			outString = outString.concat(separator, this.data[i]);
+		}
+		return outString;
+	},
 	// slice the buffer to an arraay
 	slice : function (start, end) {
 		var size = this.length;
