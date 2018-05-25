@@ -1,5 +1,11 @@
 ## JavaScript [Circular Buffer](http://en.wikipedia.org/wiki/Circular_buffer) Utility
 
+
+[![npm](https://img.shields.io/npm/v/CBuffer.svg)](https://www.npmjs.com/package/CBuffer)
+[![Build Status](https://travis-ci.org/trevnorris/cbuffer.svg?branch=master)](https://travis-ci.org/trevnorris/cbuffer)
+[![npm license](https://img.shields.io/npm/l/CBuffer.svg)](./LICENSE)
+
+
 The end goal of this project is to implement the entire JavaScript `Array.prototype`, and some
 additional utility methods, as a circular buffer.
 
