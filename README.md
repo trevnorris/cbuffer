@@ -1,7 +1,12 @@
-## JavaScript [Circular Buffer](http://en.wikipedia.org/wiki/Circular_buffer) Utility
+## CBuffer: JavaScript [Circular Buffer](http://en.wikipedia.org/wiki/Circular_buffer) Utility
+
+[![npm](https://img.shields.io/npm/v/CBuffer.svg)](https://www.npmjs.com/package/CBuffer)
+[![Build Status](https://travis-ci.org/trevnorris/cbuffer.svg?branch=master)](https://travis-ci.org/trevnorris/cbuffer)
+[![npm license](https://img.shields.io/npm/l/CBuffer.svg)](./LICENSE)
+
 
 The end goal of this project is to implement the entire JavaScript `Array.prototype`, and some
-additional utility methods, as a circular buffer.
+additional utility methods, as a **circular buffer**, a **ring buffer** structure.
 
 Note: This is called a circular buffer because of what this library accomplishes, but is implemented
 as an Array. This may be confusing for Node users, which may want to use a true Buffer.
@@ -39,35 +44,35 @@ myBuff.push(5);       // log: 1
 
 #### Mutator Methods
 
-* pop         - Removes the last element from a circular buffer and returns that element.
-* push        - Adds one or more elements to the end of a circular buffer and returns the new length.
-* reverse     - Reverses the order of the elements of a circular buffer.
-* rotateLeft  - Rotates all elements left 1, or n, times.
-* rotateRight - Rotates all elements right 1, or n, times.
-* shift       - Removes the first element from a circular buffer and returns that element.
-* sort        - Sorts the elements of a circular buffer. Unlike native `sort`, the default comparitor sorts by `a > b`.
-* unshift     - Adds one or more elements to the front of a circular buffer and returns the new length.
+* `pop`         - Removes the last element from a circular buffer and returns that element.
+* `push`        - Adds one or more elements to the end of a circular buffer and returns the new length.
+* `reverse`     - Reverses the order of the elements of a circular buffer.
+* `rotateLeft`  - Rotates all elements left 1, or n, times.
+* `rotateRight` - Rotates all elements right 1, or n, times.
+* `shift`       - Removes the first element from a circular buffer and returns that element.
+* `sort`        - Sorts the elements of a circular buffer. Unlike native `sort`, the default comparitor sorts by `a > b`.
+* `unshift`     - Adds one or more elements to the front of a circular buffer and returns the new length.
 
 #### Accessor Methods
 
-* indexOf     - Returns the first (least) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
-* lastIndexOf - Returns the last (greatest) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
-* sortedIndex - Returns the position some `value` would be inserted into a sorted circular buffer ranked by an optional comparitor.
+* `indexOf`     - Returns the first (least) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
+* `lastIndexOf` - Returns the last (greatest) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
+* `sortedIndex` - Returns the position some `value` would be inserted into a sorted circular buffer ranked by an optional comparitor.
 
 #### Iteration Methods
 
-* every       - Returns true if every element in the circular buffer satisfies the provided testing function.
-* forEach     - Calls a function for each element in the circular buffer.
-* some        - Returns true if at least one element in the circular buffer satisfies the provided testing function.
+* `every`       - Returns true if every element in the circular buffer satisfies the provided testing function.
+* `forEach`     - Calls a function for each element in the circular buffer.
+* `some`        - Returns true if at least one element in the circular buffer satisfies the provided testing function.
 
 #### Utility Methods
 
-* empty       - Equivalent to setting `Array.length = 0`.
-* fill        - Fill with passed argument. Also supports functions.
-* first       - Returns first value in circular buffer.
-* last        - Returns last value in circular buffer.
-* get         - Get value at specific index.
-* set         - Set value as specific index.
-* toArray     - Return clean ordered array of buffer.
-* overflow    - Set to function and will be called when data is about to be overwritten.
-* slice       - Return a slice of the buffer as an array.
+* `empty`       - Equivalent to setting `Array.length = 0`.
+* `fill`        - Fill with passed argument. Also supports functions.
+* `first`       - Returns first value in circular buffer.
+* `last`        - Returns last value in circular buffer.
+* `get`         - Get value at specific index.
+* `set`         - Set value as specific index.
+* `toArray`     - Return clean ordered array of buffer.
+* `overflow`    - Set to function and will be called when data is about to be overwritten.
+* `slice`       - Return a slice of the buffer as an array.

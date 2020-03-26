@@ -9,15 +9,23 @@
 		"email" : "trev.norris@gmail.com",
 		"url" : "http://trevorjnorris.com"
 	},
+	"license": "MIT",
 	"licenses" : [{
 		"type" : "MIT",
 		"url" : "http://www.opensource.org/licenses/mit-license.php"
 	}],
+	"keywords": [
+		"circular buffer",
+		"ring",
+		"circular",
+		"buffer",
+		"data structure"
+	],
 	"devDependencies" : {
 		"vows" : "latest"
 	},
 	"scripts" : {
-		"test" : "node ./node_modules/.bin/vows"
+		"test" : "vows"
 	},
 	"repository" : {
 		"type" : "git",
