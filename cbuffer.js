@@ -34,6 +34,10 @@ function defaultComparitor(a, b) {
 	return a == b ? 0 : a > b ? 1 : -1;
 }
 
+function mod(n, m) {
+  return ((n % m) + m) % m;
+}
+
 CBuffer.prototype = {
 	// properly set constructor
 	constructor : CBuffer,
@@ -213,8 +217,17 @@ CBuffer.prototype = {
 			callback.call(context, this.data[(this.start + i) % this.size], i, this);
 		}
 	},
+	// construct new CBuffer of same length, apply map function, and return new CBuffer
+	map : function (callback, context) {
+		var outCBuffer = new CBuffer(this.size);
+		for (var i = 0; i < this.length; i++) {
+			var n = (this.start + i) % this.size;
+			outCBuffer.push(callback.call(context, this.data[n], i, this));
+		}
+		return outCBuffer;
+	},
 	// check items agains test until one returns true
-	// TODO: figure out how to emuldate Array use better
+	// TODO: figure out how to emulate Array use better
 	some : function (callback, context) {
 		var i = 0;
 		for (; i < this.length; i++) {
@@ -279,7 +292,7 @@ CBuffer.prototype = {
 	},
 	// return specific index in buffer
 	get : function (arg) {
-		return this.data[(this.start + arg) % this.size];
+		return this.data[mod(this.start + arg, this.size)];
 	},
 	isFull : function (arg) {
 		return this.size === this.length;
@@ -291,6 +304,16 @@ CBuffer.prototype = {
 	// return clean array of values
 	toArray : function () {
 		return this.slice();
+	},
+	// return a string based on the array
+	join : function(separator) {
+		if (!separator) separator = ',';
+		var outString = new String(this.data[0]);
+		for (var i = 1; i < this.length; i++) {
+			var n = (this.start + i) % this.size;
+			outString = outString.concat(separator, this.data[i]);
+		}
+		return outString;
 	},
 	// slice the buffer to an arraay
 	slice : function (start, end) {
