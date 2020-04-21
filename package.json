@@ -1,34 +1,36 @@
 {
-	"name" : "CBuffer",
-	"version" : "2.1.0",
-	"description" : "Circular Buffer JavaScript implementation",
-	"homepage" : "https://github.com/trevnorris/cbuffer",
-	"main" : "./cbuffer.js",
-	"author" : {
-		"name" : "Trevor Norris",
-		"email" : "trev.norris@gmail.com",
-		"url" : "http://trevorjnorris.com"
-	},
-	"license": "MIT",
-	"licenses" : [{
-		"type" : "MIT",
-		"url" : "http://www.opensource.org/licenses/mit-license.php"
-	}],
-	"keywords": [
-		"circular buffer",
-		"ring",
-		"circular",
-		"buffer",
-		"data structure"
-	],
-	"devDependencies" : {
-		"vows" : "latest"
-	},
-	"scripts" : {
-		"test" : "vows"
-	},
-	"repository" : {
-		"type" : "git",
-		"url" : "https://github.com/trevnorris/cbuffer.git"
-	}
+  "name": "CBuffer",
+  "version": "2.1.0",
+  "description": "Circular Buffer JavaScript implementation",
+  "homepage": "https://github.com/trevnorris/cbuffer",
+  "main": "./cbuffer.js",
+  "author": {
+    "name": "Trevor Norris",
+    "email": "trev.norris@gmail.com",
+    "url": "http://trevorjnorris.com"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/mit-license.php"
+  }
+  ],
+  "keywords": [
+    "circular buffer",
+    "ring",
+    "circular",
+    "buffer",
+    "data structure"
+  ],
+  "devDependencies": {
+    "vows": "latest"
+  },
+  "scripts": {
+    "test": "vows"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trevnorris/cbuffer.git"
+  }
 }
