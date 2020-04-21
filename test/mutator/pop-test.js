@@ -29,7 +29,15 @@ suite.addBatch({
       tmp.pop();
       assert.equal(tmp.end, 1);
       assert.equal(tmp.length, 2);
-    }
+    },
+    'over pop': function(CBuffer) {
+      var tmp = CBuffer(5);
+      tmp.push(4, 5, 6, 7, 8, 9, 10);
+      assert.equal(tmp.pop(), 10);
+      assert.equal(tmp.end, 0);
+      assert.equal(tmp.start, 2);
+      assert.equal(tmp.length, 4);
+    },
   }
 });
 
