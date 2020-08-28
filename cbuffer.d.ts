@@ -1,12 +1,12 @@
 
 // Note that ES6 modules cannot directly export class objects.
 // This file should be imported using the CommonJS-style:
-//   import x = require('[~THE MODULE~]');
+//   import CBuffer = require('CBuffer');
 //
 // Alternatively, if --allowSyntheticDefaultImports or
 // --esModuleInterop is turned on, this file can also be
 // imported as a default import:
-//   import x from '[~THE MODULE~]';
+//   import CBuffer from 'CBuffer';
 //
 // Refer to the TypeScript documentation at
 // https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require
